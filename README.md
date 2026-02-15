@@ -45,7 +45,7 @@
 ## 🌐 Connect With Me
 
 <p>
-<a href="codewithrrohit@email.com">
+<a href="mailto:codewithrrohit@email.com">
 <img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail">
 </a>
 <a href="https://github.com/rohitsingh200">
