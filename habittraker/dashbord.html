@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="glass">
+<h2>Dashboard</h2>
+<a href="logout.php"><button>Logout</button></a>
+
+<input id="task" placeholder="Enter habit">
+<button onclick="addHabit()">Add Habit</button>
+
+<ul id="list"></ul>
+</div>
+
+<script>
+async function addHabit(){
+    const task = document.getElementById("task").value;
+    const date = new Date().toISOString().split("T")[0];
+
+    await fetch("addHabit.php",{
+        method:"POST",
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({task,date})
+    });
+
+    loadHabits();
+}
+
+async function loadHabits(){
+    const res = await fetch("getHabits.php");
+    const data = await res.json();
+
+    const list = document.getElementById("list");
+    list.innerHTML="";
+
+    data.forEach(h=>{
+        let li = document.createElement("li");
+        li.innerText = h.task + " ("+h.date+")";
+        list.appendChild(li);
+    });
+}
+
+loadHabits();
+</script>
+
+</body>
+</html>
